@@ -1,0 +1,25 @@
+version: '3'
+services:
+  devphp:
+    image: php:apache
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./approot:/var/www/html"
+  devmysql:
+    image: mysql:latest
+    volumes:
+      - mysqldb-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD : 'yes'
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: ''
+      MYSQL_DATABASE: 'testdb'
+    restart: always
+
+volumes:
+  mysqldb-volume:
