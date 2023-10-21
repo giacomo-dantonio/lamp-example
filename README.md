@@ -2,4 +2,14 @@
 
 This is an example application to showcase the LAMP stack.
 
-I uses this for the docker setup: <https://linuxconfig.org/how-to-create-a-docker-based-lamp-stack-using-docker-on-ubuntu-20-04>.
+## How to use
+
+Start the images with docker compose
+
+    docker compose up
+
+Put your php files in the `./approot` folder and access them from your browser.
+
+For example the file `info.php` outputs information about the enviroment
+(in the container) and you can access that through the link
+<http://localhost/info.php> once the server is started.

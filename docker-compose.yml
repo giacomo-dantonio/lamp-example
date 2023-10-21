@@ -1,7 +1,8 @@
 version: '3'
 services:
   devphp:
-    image: php:apache
+    build: .
+    container_name: devphp
     ports:
       - "80:80"
       - "443:443"
@@ -9,6 +10,7 @@ services:
       - "./approot:/var/www/html"
   devmysql:
     image: mysql:latest
+    container_name: devmysql
     volumes:
       - mysqldb-volume:/var/lib/mysql
     ports:
@@ -17,7 +19,7 @@ services:
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_ALLOW_EMPTY_PASSWORD : 'yes'
       MYSQL_USER: 'testuser'
-      MYSQL_PASSWORD: ''
+      MYSQL_PASSWORD: 'testpw'
       MYSQL_DATABASE: 'testdb'
     restart: always
 
