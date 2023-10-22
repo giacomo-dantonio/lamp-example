@@ -17,5 +17,5 @@ For example the file `info.php` outputs information about the enviroment
 ## 3rd party
 
 The migration [Dockerfile](migrations/Dockerfile) and
-[script](migrations/migrate.sh) are taken from
+[script](migrations/migrate.sh) are adapted from
 [this repository](https://github.com/mathew-hall/mysql_migration).
