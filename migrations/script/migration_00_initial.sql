@@ -4,6 +4,8 @@ USE testdb;
 CREATE TABLE IF NOT EXISTS testdb.sessions (
   session_id varchar(255),
   name varchar(255),
+  category varchar(255),
+  difficulty varchar(255),
   PRIMARY KEY (session_id)
 );
 
@@ -17,6 +19,7 @@ CREATE TABLE IF NOT EXISTS testdb.questions (
   difficulty varchar(255),
   correct_answer varchar(255),
   player_answer varchar(255),
+  CONSTRAINT UC_sort UNIQUE (session_id, sort),
   FOREIGN KEY (session_id) REFERENCES testdb.sessions(session_id),
   PRIMARY KEY (question_id)
 );

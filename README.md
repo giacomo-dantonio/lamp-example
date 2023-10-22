@@ -2,6 +2,10 @@
 
 This is an example application to showcase the LAMP stack.
 
+Frontend and backend code is not separated.
+Almost no logic on the frontend.
+The state is all in the database. Even if it is transient.
+
 ## How to use
 
 Start the images with docker compose
