@@ -13,7 +13,7 @@
     $sort = $_GET["question"];
 
     $name = $triviadb->get_name($session_id);
-    $question = $triviadb->get_question($session_id, $sort);
+    $question = $triviadb->get_question(session_id: $session_id, sort: $sort);
     $answers = $triviadb->get_answers($question["question_id"]);
 
     switch ($sort) {
@@ -55,8 +55,8 @@
   <br>
 
   <form action="answer_question.php" method="post">
-    <label for="answer">Answer</label>
-    <select id="answer" name="answer">
+    <label for="answer_id">Answer</label>
+    <select id="answer_id" name="answer_id">
       <?php
       foreach ($answers as $answer) {
         echo <<<END
