@@ -1,6 +1,5 @@
 <?php
-
-$mysqli = new mysqli("devmysql", "testuser", "testpw", "testdb");
+include 'dbconn.php';
 
 $session_id = create_session($mysqli, $_POST["name"], $_POST["category"], $_POST["difficulty"]);
 $first_question = create_questions($mysqli, $session_id, $_POST["category"], $_POST["difficulty"]);
@@ -22,7 +21,7 @@ function create_session(mysqli $mysqli, string $name, string $category, string $
   $session_id = uniqid();
 
   $stmt = $mysqli->prepare(<<<END
-    INSERT INTO testdb.sessions (session_id, name, category, difficulty)
+    INSERT INTO trivadb.sessions (session_id, name, category, difficulty)
     VALUES (?, ?, ?, ?)
     END);
   $stmt->bind_param("ssss", $session_id, $name, $category, $difficulty);
@@ -58,7 +57,7 @@ function create_questions(mysqli $mysqli, string $session_id, string $category, 
 
   // Prepare insert statements
   $stmt = $mysqli->prepare(<<<END
-    INSERT INTO testdb.questions (
+    INSERT INTO trivadb.questions (
       question_id,
       session_id,
       question,
@@ -82,7 +81,7 @@ function create_questions(mysqli $mysqli, string $session_id, string $category, 
   );
 
   $ans_stmt = $mysqli->prepare(<<<END
-    INSERT INTO testdb.answers (
+    INSERT INTO trivadb.answers (
       answer_id,
       question_id,
       session_id,

@@ -1,7 +1,7 @@
--- Switch to the 'testdb' database
-USE testdb;
+-- Switch to the 'trivadb' database
+USE trivadb;
 
-CREATE TABLE IF NOT EXISTS testdb.sessions (
+CREATE TABLE IF NOT EXISTS trivadb.sessions (
   session_id varchar(255),
   name varchar(255),
   category varchar(255),
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS testdb.sessions (
   PRIMARY KEY (session_id)
 );
 
-CREATE TABLE IF NOT EXISTS testdb.questions (
+CREATE TABLE IF NOT EXISTS trivadb.questions (
   question_id varchar(255),
   session_id varchar(255),
   question varchar(255),
@@ -20,16 +20,16 @@ CREATE TABLE IF NOT EXISTS testdb.questions (
   correct_answer varchar(255),
   player_answer varchar(255),
   CONSTRAINT UC_sort UNIQUE (session_id, sort),
-  FOREIGN KEY (session_id) REFERENCES testdb.sessions(session_id),
+  FOREIGN KEY (session_id) REFERENCES trivadb.sessions(session_id),
   PRIMARY KEY (question_id)
 );
 
-CREATE TABLE IF NOT EXISTS testdb.answers (
+CREATE TABLE IF NOT EXISTS trivadb.answers (
   answer_id varchar(255),
   question_id varchar(255),
   session_id varchar(255),
   answer varchar(255),
-  FOREIGN KEY (question_id) REFERENCES testdb.questions(question_id),
-  FOREIGN KEY (session_id) REFERENCES testdb.sessions(session_id),
+  FOREIGN KEY (question_id) REFERENCES trivadb.questions(question_id),
+  FOREIGN KEY (session_id) REFERENCES trivadb.sessions(session_id),
   PRIMARY KEY (answer_id)
 );

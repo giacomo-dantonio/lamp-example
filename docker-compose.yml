@@ -16,7 +16,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: 'testdb'
+      MYSQL_DATABASE: 'trivadb'
       MYSQL_USER: 'testuser'
       MYSQL_PASSWORD: 'testpw'
       MYSQL_ROOT_PASSWORD: 'root'
@@ -30,7 +30,7 @@ services:
       - devmysql
     environment:
       MYSQL_HOST: 'devmysql'
-      MYSQL_DATABASE: 'testdb'
+      MYSQL_DATABASE: 'trivadb'
       MYSQL_USER: 'testuser'
       MYSQL_PASSWORD: 'testpw'
 
