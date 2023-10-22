@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS testdb.questions (
   question_id varchar(255),
   session_id varchar(255),
   question varchar(255),
+  sort int,
   category varchar(255),
   type varchar(255),
   difficulty varchar(255),
