@@ -14,14 +14,25 @@ services:
     volumes:
       - mysqldb-volume:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: ''
-      MYSQL_ALLOW_EMPTY_PASSWORD : 'yes'
+      MYSQL_DATABASE: 'testdb'
       MYSQL_USER: 'testuser'
       MYSQL_PASSWORD: 'testpw'
-      MYSQL_DATABASE: 'testdb'
+      MYSQL_ROOT_PASSWORD: 'root'
     restart: always
+  migration:
+    build: './migrations'
+    container_name: devmigration
+    volumes:
+      - ./migrations/script:/docker-entrypoint-migrations.d
+    links:
+      - devmysql
+    environment:
+      MYSQL_HOST: 'devmysql'
+      MYSQL_DATABASE: 'testdb'
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'testpw'
 
 volumes:
   mysqldb-volume:
