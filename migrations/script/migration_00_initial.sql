@@ -33,3 +33,12 @@ CREATE TABLE IF NOT EXISTS trivadb.answers (
   FOREIGN KEY (session_id) REFERENCES trivadb.sessions(session_id),
   PRIMARY KEY (answer_id)
 );
+
+CREATE OR REPLACE VIEW sessions_scored AS
+WITH scores (session_id, score) AS (
+  SELECT session_id, SUM(CASE WHEN player_answer=correct_answer THEN 1 ELSE 0 END) / COUNT(*) * 100 score
+  FROM questions
+  GROUP BY session_id
+)
+SELECT se.*, sc.score
+FROM sessions se LEFT JOIN scores sc ON se.session_id = sc.session_id;
