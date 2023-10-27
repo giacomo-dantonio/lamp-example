@@ -8,8 +8,6 @@ The state is all in the database. Even if it is transient.
 
 ## TODO
 
-- End game page
-- Difficulty filter is not working
 - High score board
 - Error management (e.g. when some request parameters are not defined).
 - Style UI

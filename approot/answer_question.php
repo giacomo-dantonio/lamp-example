@@ -37,7 +37,7 @@
     $triviadb->update_answer($question_id, $answer["answer"]);
   ?>
 
-  <h1><?php echo $name; ?>,
+  <h1><?php echo $name; ?>:
   <?php
     if ($correct) {
       echo "Congratulations, your answer is correct 🥳";

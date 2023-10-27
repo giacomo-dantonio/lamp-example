@@ -1,4 +1,18 @@
 <?php
+const N_QUESTIONS = 10;
+
+define("QUESTION_KEYS", array(
+  "question_id",
+  "session_id",
+  "question",
+  "sort",
+  "category",
+  "type",
+  "difficulty",
+  "correct_answer",
+  "player_answer"
+));
+
 class triviadb
 {
   private $mysqli;
@@ -129,7 +143,7 @@ class triviadb
 
   public function create_questions(string $session_id, string $category, string $difficulty) {
     // fetch questions from Open Trivia API
-    $url = $this->make_opentdb_url(10, $category, $difficulty);
+    $url = $this->make_opentdb_url(N_QUESTIONS, $category, $difficulty);
     $response = file_get_contents($url);
     $json = json_decode($response, true);
 
@@ -235,13 +249,36 @@ class triviadb
     $stmt->execute();
   }
 
+  public function get_session(string $session_id) {
+    $attrs = implode(", ", QUESTION_KEYS);
+    $stmt = $this->mysqli->prepare(
+      <<<END
+      SELECT $attrs
+      FROM questions
+      WHERE session_id=?
+      END
+    );
+    $stmt->bind_param("s", $session_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all();
+
+    if (isset($rows) && sizeof($rows) > 0) {
+      $data = array_map(function($row) {
+        return array_combine(QUESTION_KEYS, $row);
+      }, $rows);
+      return $data;
+    }
+  }
+
   private function make_opentdb_url(int $amount, string $category, string $difficulty) {
-    $param = array("amount" => 10);
+    $param = array("amount" => $amount);
     if (isset($category) && $category != "") {
       $param["category"] = $category;
     }
     if (isset($difficulty) && $difficulty != "") {
-      $difficulty = $difficulty;
+      $param["difficulty"] = $difficulty;
     }
 
     $query = http_build_query($param);
