@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>LAMP Trivia</title>
 </head>
 <body>
@@ -32,41 +33,43 @@
         break;
     }
   ?>
-  <h1>
-    Hello <?php echo $name; ?>.
-    This is your <?php echo $question_nr; ?> question.
-  </h1>
+  <div id="main">
+    <h1>
+      Hello <?php echo $name; ?>.
+    </h1>
 
-  <table>
-    <tr>
-      <th>Question:</th>
-      <td><?php echo $question['question']; ?></td>
-    </tr>
-    <tr>
-      <th>Category:</th>
-      <td><?php echo $question['category']; ?></td>
-    </tr>
-    <tr>
-      <th>Difficulty:</th>
-      <td><?php echo $question['difficulty']; ?></td>
-    </tr>
-  </table>
+    <h3>🤔 <?php echo $question['question']; ?></h3>
 
-  <br>
+    <table>
+      <tr>
+        <th>Category:</th>
+        <td><?php echo $question['category']; ?></td>
+      </tr>
+      <tr>
+        <th>Difficulty:</th>
+        <td><?php echo $question['difficulty']; ?></td>
+      </tr>
+    </table>
 
-  <form action="answer_question.php" method="post">
-    <label for="answer_id">Answer</label>
-    <select id="answer_id" name="answer_id">
-      <?php
-      foreach ($answers as $answer) {
-        echo <<<END
-          <option value="{$answer['answer_id']}">{$answer['answer']}</option>\n
-          END;
-      }
-      ?>
-    </select>
     <br>
-    <input type="submit" value="Submit">
-  </form>
+
+    <div class="content">
+      <form action="answer_question.php" method="post">
+        <label>Answer</label>
+        <?php
+        foreach ($answers as $answer) {
+          echo <<<END
+            <label>
+              <input type="radio" name="answer_id" value="{$answer['answer_id']}"> {$answer['answer']}
+            </label>
+  END;
+        }
+        ?>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <small>This is your <?php echo $question_nr; ?> question.</small>
+  </div>
 </body>
 </html>
