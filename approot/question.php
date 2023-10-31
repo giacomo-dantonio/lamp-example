@@ -16,22 +16,7 @@
     $name = $triviadb->get_name($session_id);
     $question = $triviadb->get_question(session_id: $session_id, sort: $sort);
     $answers = $triviadb->get_answers($question["question_id"]);
-
-    switch ($sort) {
-      case 0:
-        $question_nr = "1st";
-        break;
-      case 1:
-        $question_nr = "2nd";
-        break;
-      case 2:
-        $question_nr = "3rd";
-        break;
-      default:
-        $nr = $sort + 1;
-        $question_nr = "{$nr}th";
-        break;
-    }
+    $question_nr = question_nr($sort);
   ?>
   <div id="main">
     <h1>
@@ -41,7 +26,7 @@
     <div class="content">
       <p><strong>Q:</strong> <?php echo $question['question']; ?> 🤔</p>
 
-      <form action="answer_question.php" method="post">
+      <form class="flex-container" action="answer_question.php" method="post">
         <div class="answers">
           <?php
           foreach ($answers as $answer) {
@@ -57,10 +42,10 @@
         <input type="submit" value="Submit">
       </form>
     </div>
-    <small>This is your <?php echo $question_nr; ?> question. /
-    <?php echo $question['category']; ?> /
-    <?php echo $question['difficulty']; ?>
-  </small>
+    <small>This is your <?php echo $question_nr; ?> question /
+      <?php echo $question['category']; ?> /
+      <?php echo ucfirst($question['difficulty']); ?>
+    </small>
   </div>
 </body>
 </html>

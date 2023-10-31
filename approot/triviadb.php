@@ -13,6 +13,20 @@ define("QUESTION_KEYS", array(
   "player_answer"
 ));
 
+function question_nr(int $sort): string {
+  switch ($sort) {
+    case 0:
+      return "1st";
+    case 1:
+      return "2nd";
+    case 2:
+      return "3rd";
+    default:
+      $nr = $sort + 1;
+      return "{$nr}th";
+  }
+}
+
 class triviadb
 {
   private $mysqli;
