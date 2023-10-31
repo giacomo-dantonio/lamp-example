@@ -69,5 +69,8 @@
         ?>
       </table>
     </div>
+    <small><?php echo $question['category']; ?> /
+      <?php echo ucfirst($question['difficulty']); ?>
+    </small>
   </div>
 </body>

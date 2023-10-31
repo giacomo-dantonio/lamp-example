@@ -6,6 +6,11 @@
 <?php
   include 'triviadb.php';
 
+  if (!array_key_exists("answer_id", $_POST) || is_null($_POST["answer_id"])) {
+    trigger_error("No answer provided", E_USER_ERROR);
+    die(0);
+  }
+
   $answer_id = $_POST["answer_id"];
   $answer = $triviadb->get_answer($answer_id);
   $question_id = $answer["question_id"];
