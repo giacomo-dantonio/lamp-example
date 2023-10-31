@@ -33,6 +33,11 @@ body {
   justify-content: space-between;
 }
 
+#main.large {
+  width: 60vw;
+  height: fit-content;
+}
+
 .content,
 .flex-container {
   flex-grow: 1;
@@ -126,4 +131,8 @@ a.next-question {
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
+}
+
+table.recap {
+  width: 100%;
 }
