@@ -102,6 +102,8 @@ class triviadb
       },
       $result->fetch_all()
     );
+
+    shuffle($answers);
     return $answers;
   }
 

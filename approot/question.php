@@ -35,41 +35,32 @@
   ?>
   <div id="main">
     <h1>
-      Hello <?php echo $name; ?>.
+      ⁉️ <?php echo $name; ?>,
     </h1>
 
-    <h3>🤔 <?php echo $question['question']; ?></h3>
-
-    <table>
-      <tr>
-        <th>Category:</th>
-        <td><?php echo $question['category']; ?></td>
-      </tr>
-      <tr>
-        <th>Difficulty:</th>
-        <td><?php echo $question['difficulty']; ?></td>
-      </tr>
-    </table>
-
-    <br>
-
     <div class="content">
+      <p><strong>Q:</strong> <?php echo $question['question']; ?> 🤔</p>
+
       <form action="answer_question.php" method="post">
-        <label>Answer</label>
-        <?php
-        foreach ($answers as $answer) {
-          echo <<<END
-            <label>
-              <input type="radio" name="answer_id" value="{$answer['answer_id']}"> {$answer['answer']}
-            </label>
-  END;
-        }
-        ?>
-        <br>
+        <div class="answers">
+          <?php
+          foreach ($answers as $answer) {
+            echo <<<END
+              <label>
+                <input type="radio" name="answer_id" value="{$answer['answer_id']}">
+                {$answer['answer']}
+              </label>
+    END;
+          }
+          ?>
+        </div>
         <input type="submit" value="Submit">
       </form>
     </div>
-    <small>This is your <?php echo $question_nr; ?> question.</small>
+    <small>This is your <?php echo $question_nr; ?> question. /
+    <?php echo $question['category']; ?> /
+    <?php echo $question['difficulty']; ?>
+  </small>
   </div>
 </body>
 </html>
