@@ -288,6 +288,39 @@ class triviadb
     }
   }
 
+  public function get_sessions(int $limit) {
+    $stmt = $this->mysqli->prepare(<<<END
+      SELECT
+        session_id,
+        name,
+        category,
+        difficulty,
+        score
+      FROM sessions_scored
+      WHERE score IS NOT NULL
+      ORDER BY score DESC
+      LIMIT ?
+      END);
+    $stmt->bind_param("i", $limit);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $sessions = array_map(
+      function ($row) {
+        return array(
+          "session_id" => $row[0],
+          "name" => $row[1],
+          "category" => $row[2],
+          "difficulty" => $row[3],
+          "score" => $row[4]
+        );
+      },
+      $result->fetch_all()
+    );
+
+    return $sessions;
+  }
+
   private function make_opentdb_url(int $amount, string $category, string $difficulty) {
     $param = array("amount" => $amount);
     if (isset($category) && $category != "") {

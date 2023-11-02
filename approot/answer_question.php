@@ -69,7 +69,8 @@
     </div>
     <small>This is your <?php echo $question_nr; ?> question /
       <?php echo $question['category']; ?> /
-      <?php echo ucfirst($question['difficulty']); ?>
+      <?php echo ucfirst($question['difficulty']); ?> /
+      <a href="/scoreboard.php">Score Board</a>
     </small>
   </div>
 </body>

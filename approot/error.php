@@ -11,5 +11,8 @@
       <p>An error occurred:</p>
       <h2><?php echo $_GET["error"]; ?></h2>
     </div>
+    <small>
+      <a href="/scoreboard.php">Score Board</a>
+    </small>
   </div>
 </body>

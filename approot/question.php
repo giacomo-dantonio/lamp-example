@@ -29,7 +29,7 @@
           foreach ($answers as $answer) {
             echo <<<END
               <label>
-                <input type="radio" name="answer_id" value="{$answer['answer_id']}">
+                <input type="radio" name="answer_id" value="{$answer['answer_id']}" required>
                 {$answer['answer']}
               </label>
     END;
@@ -41,7 +41,8 @@
     </div>
     <small>This is your <?php echo $question_nr; ?> question /
       <?php echo $question['category']; ?> /
-      <?php echo ucfirst($question['difficulty']); ?>
+      <?php echo ucfirst($question['difficulty']); ?> /
+      <a href="/scoreboard.php">Score Board</a>
     </small>
   </div>
 </body>

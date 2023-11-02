@@ -42,7 +42,10 @@
         <input type="submit" value="Start">
       </form>
     </div>
-    <small>Powered by <a href="https://opentdb.com/">Open Trivia Database</a></small>
+    <small>
+      <a href="/scoreboard.php">Score Board</a> /
+      Powered by <a href="https://opentdb.com/">Open Trivia Database</a>
+    </small>
   </div>
 </body>
 </html>

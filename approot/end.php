@@ -70,7 +70,8 @@
       </table>
     </div>
     <small><?php echo $question['category']; ?> /
-      <?php echo ucfirst($question['difficulty']); ?>
+      <?php echo ucfirst($question['difficulty']); ?> /
+      <a href="/scoreboard.php">Score Board</a>
     </small>
   </div>
 </body>
